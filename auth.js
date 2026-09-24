@@ -1,0 +1,5 @@
+document.addEventListener("DOMContentLoaded",()=>{
+const reg=document.getElementById("registerForm"), login=document.getElementById("loginForm"), msg=document.getElementById("authMessage");
+if(reg)reg.addEventListener("submit",e=>{e.preventDefault();const d=new FormData(reg);localStorage.setItem("ps_user",JSON.stringify({name:d.get("name"),email:d.get("email")}));msg.textContent="Account created. Redirecting...";msg.style.color="var(--success)";setTimeout(()=>location.href="profile.html",600)});
+if(login)login.addEventListener("submit",e=>{e.preventDefault();const d=new FormData(login);const users=JSON.parse(localStorage.getItem("ps_users")||"[]");let u=users.find(x=>x.email===d.get("email"));if(!u){u={name:d.get("email").split("@")[0],email:d.get("email")};users.push({...u,password:d.get("password")});localStorage.setItem("ps_users",JSON.stringify(users))}localStorage.setItem("ps_user",JSON.stringify({name:u.name,email:u.email}));msg.textContent="Login successful. Redirecting...";msg.style.color="var(--success)";setTimeout(()=>location.href="profile.html",600)})
+})

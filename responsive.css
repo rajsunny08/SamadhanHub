@@ -1,0 +1,54 @@
+/* =====================================================
+   SAMADHANHUB RESPONSIVE OVERRIDES
+===================================================== */
+
+@media (max-width: 950px) {
+
+    .nav-links {
+        gap: 16px;
+    }
+
+    .hero-container {
+        grid-template-columns: 1fr;
+    }
+
+    .problem-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .footer-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+
+@media (max-width: 700px) {
+
+    .nav-container {
+        width: calc(100% - 30px);
+    }
+
+    .nav-links {
+        width: 100%;
+        overflow-x: auto;
+    }
+
+    .hero-container {
+        width: calc(100% - 30px);
+    }
+
+    .problem-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .footer-container {
+        width: calc(100% - 30px);
+        grid-template-columns: 1fr;
+    }
+
+    .footer-bottom {
+        width: calc(100% - 30px);
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}

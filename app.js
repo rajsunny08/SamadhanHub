@@ -1,0 +1,13 @@
+const demoProblems=[
+{id:"PS-1001",title:"How can I build a consistent programming routine?",description:"I am learning programming but struggle to stay consistent. I want a realistic routine for a student.",category:"Education",urgency:"Normal",location:"India",status:"OPEN",solutions:3,author:"Demo User",createdAt:"2026-09-23T10:00:00Z"},
+{id:"PS-1002",title:"Laptop becomes slow after installing development tools",description:"My laptop gets very slow after opening VS Code and browser together. Looking for optimization ideas.",category:"Technology",urgency:"Important",location:"India",status:"IN PROGRESS",solutions:5,author:"Rahul",createdAt:"2026-09-22T08:00:00Z"},
+{id:"PS-1003",title:"Need a practical roadmap for getting my first internship",description:"What should a beginner learn and build to become internship-ready?",category:"Career",urgency:"Normal",location:"India",status:"SOLVED",solutions:7,author:"Ankit",createdAt:"2026-09-20T12:00:00Z"}
+];
+function getProblems(){return JSON.parse(localStorage.getItem("ps_problems")||"null")||demoProblems}
+function saveProblems(p){localStorage.setItem("ps_problems",JSON.stringify(p))}
+function esc(s){return String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[c]))}
+function card(p){const cls=p.status==="SOLVED"?"solved":p.status==="IN PROGRESS"?"progress":"open";return `<article class="problem-card"><span class="status ${cls}">${esc(p.status)}</span><h3>${esc(p.title)}</h3><p>${esc(p.description).slice(0,120)}${p.description.length>120?"…":""}</p><div class="problem-meta"><span>📁 ${esc(p.category)}</span><span>💡 ${p.solutions||0} solutions</span><span>🆔 ${esc(p.id)}</span></div><br><a class="text-link" href="problem-details.html?id=${encodeURIComponent(p.id)}">View problem →</a></article>`}
+function currentUser(){return JSON.parse(localStorage.getItem("ps_user")||"null")}
+function updateNav(){const u=currentUser();document.querySelectorAll("#navAuth").forEach(a=>{if(u){a.textContent="Profile";a.href="profile.html"}})}
+function updateStats(){const p=getProblems();const solved=p.filter(x=>x.status==="SOLVED").length;const solutions=p.reduce((n,x)=>n+(x.solutions||0),0);const ids=new Set(p.map(x=>x.author));const map={problemCount:p.length,solvedCount:solved,solutionCount:solutions,helperCount:Math.max(ids.size,1)};Object.entries(map).forEach(([id,v])=>{const el=document.getElementById(id);if(el)el.textContent=v})}
+document.addEventListener("DOMContentLoaded",()=>{updateNav();updateStats();const h=document.getElementById("homeProblems");if(h)h.innerHTML=getProblems().slice(0,3).map(card).join("")})
