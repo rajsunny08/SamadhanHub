@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Browse Problems — SamadhanHub</title>
+<link rel="stylesheet" href="css/style.css"><link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+<header class="navbar">
+<a class="brand" href="index.html"><span>PS</span> SamadhanHub</a>
+<nav><a href="problems.html">Browse Problems</a><a href="register-problem.html" class="btn btn-primary">+ Register Problem</a><a href="login.html" id="navAuth">Login</a></nav>
+</header>
+<main class="container page">
+  <div class="page-header"><div><p class="eyebrow">Community</p><h1>Browse Problems</h1><p>Find an open problem where your knowledge can help.</p></div></div>
+  <div class="filters">
+    <input id="searchInput" class="input" type="search" placeholder="Search problems...">
+    <select id="categoryFilter" class="input"><option value="">All categories</option><option>Education</option><option>Technology</option><option>Career</option><option>Business</option><option>Daily Life</option><option>Community</option><option>Other</option></select>
+    <select id="statusFilter" class="input"><option value="">All status</option><option value="OPEN">Open</option><option value="IN PROGRESS">In Progress</option><option value="SOLVED">Solved</option></select>
+  </div>
+  <div id="problemList" class="problem-grid"></div>
+</main>
+<footer><p>© 2026 SamadhanHub</p></footer>
+<script src="js/app.js"></script><script src="js/problems.js"></script>
+</body>
+</html>

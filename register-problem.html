@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Register a Problem — SamadhanHub</title>
+<link rel="stylesheet" href="css/style.css"><link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+<header class="navbar"><a class="brand" href="index.html"><span>PS</span> SamadhanHub</a><nav><a href="problems.html">Browse Problems</a><a href="login.html" id="navAuth">Login</a></nav></header>
+<main class="container page narrow">
+  <div class="page-header"><p class="eyebrow">Start here</p><h1>Register a Problem</h1><p>Big or small, explain it clearly. Someone may have the solution.</p></div>
+  <form id="problemForm" class="form-card">
+    <label>Problem title<input class="input" name="title" maxlength="100" required placeholder="e.g. How can I improve my coding skills?"></label>
+    <label>Describe the problem<textarea class="input" name="description" rows="7" maxlength="2000" required placeholder="Explain what is happening, what you tried, and what kind of help you need."></textarea></label>
+    <div class="two-col">
+      <label>Category<select class="input" name="category" required><option value="">Choose</option><option>Education</option><option>Technology</option><option>Career</option><option>Business</option><option>Daily Life</option><option>Community</option><option>Other</option></select></label>
+      <label>Urgency<select class="input" name="urgency"><option>Normal</option><option>Important</option><option>Urgent</option></select></label>
+    </div>
+    <label>Location <span class="muted">(optional)</span><input class="input" name="location" placeholder="City / area"></label>
+    <label>Photo URL <span class="muted">(optional)</span><input class="input" name="image" type="url" placeholder="https://..."></label>
+    <button class="btn btn-primary btn-large" type="submit">Publish Problem</button>
+    <p id="formMessage" class="form-message"></p>
+  </form>
+</main>
+<footer><p>© 2026 SamadhanHub</p></footer>
+<script src="js/app.js"></script><script src="js/register-problem.js"></script>
+</body>
+</html>
