@@ -1,415 +1,174 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
-
-    <meta
-        name="description"
-        content="SamadhanHub - A community where people share problems and help each other find solutions."
-    >
-
-    <title>SamadhanHub — Turn Problems Into Solutions</title>
-
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/responsive.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="SamadhanHub — a community where people register problems and help each other find solutions.">
+<title>Turn Problems Into Solutions — SamadhanHub</title>
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/responsive.css">
 </head>
-
 <body>
-
-    <!-- =========================
-         HEADER
-    ========================== -->
-
-    <header class="navbar">
-
-        <div class="nav-container">
-
-            <!-- Brand -->
-            <a href="index.html" class="brand">
-
-                <img
-                    src="images/logo.png.jpeg"
-                    alt="SamadhanHub Logo"
-                >
-
-                <span>SamadhanHub</span>
-
-            </a>
-
-
-            <!-- Navigation -->
-            <nav class="nav-links">
-
-                <a href="index.html" class="active">
-                    Home
-                </a>
-
-                <a href="problems.html">
-                    Browse Problems
-                </a>
-
-                <a
-                    href="register-problem.html"
-                    class="nav-button"
-                >
-                    + Register Problem
-                </a>
-
-                <a href="login.html">
-                    Login
-                </a>
-
-            </nav>
-
+<header class="navbar">
+  <div class="nav-container">
+    <a href="index.html" class="brand"><img src="images/logo.jpeg" alt="SamadhanHub logo"><span>SamadhanHub</span></a>
+    <nav class="nav-links">
+      <a href="index.html" class="active">Home</a>
+      <a href="problems.html">Browse Problems</a>
+      <a href="about.html">How It Works</a>
+      <a href="register-problem.html" class="nav-button">+ Register Problem</a>
+      <a href="login.html" id="navAuth">Login</a>
+    </nav>
+  </div>
+</header>
+<main>
+  <section class="hero">
+    <div class="hero-container">
+      <div class="hero-content">
+        <p class="eyebrow">Community-Powered</p>
+        <h1>Have a problem?<br><span>Let's solve it together.</span></h1>
+        <p class="hero-tagline">Har Problem Ka Ek Samadhan</p>
+        <p class="hero-rotator">People are asking about: <strong id="rotator"></strong><span class="caret"></span></p>
+        <p class="hero-description">Register a problem, connect with people who can help, and turn useful ideas into real solutions — from a stuck study habit to a small business snag.</p>
+        <div class="hero-actions">
+          <a href="register-problem.html" class="btn btn-primary">Register a Problem</a>
+          <a href="problems.html" class="btn btn-secondary">Explore Problems</a>
         </div>
-
-    </header>
-
-
-    <!-- =========================
-         MAIN
-    ========================== -->
-
-    <main>
-
-        <!-- HERO -->
-
-        <section class="hero">
-
-            <div class="hero-container">
-
-                <div class="hero-content">
-
-                    <p class="eyebrow">
-                        A COMMUNITY BUILT AROUND SOLUTIONS
-                    </p>
-
-                    <h1>
-                        Have a problem?
-                        <br>
-
-                        <span>
-                            Let's solve it together.
-                        </span>
-                    </h1>
-
-                    <p class="hero-description">
-                        Register a problem, connect with people
-                        who can help, and turn useful ideas into
-                        real solutions.
-                    </p>
-
-
-                    <div class="hero-actions">
-
-                        <a
-                            href="register-problem.html"
-                            class="btn btn-primary"
-                        >
-                            Register a Problem
-                        </a>
-
-                        <a
-                            href="problems.html"
-                            class="btn btn-secondary"
-                        >
-                            Explore Problems
-                        </a>
-
-                    </div>
-
-                </div>
-
-
-                <!-- Hero Problem Card -->
-
-                <div class="hero-card">
-
-                    <div class="status">
-                        <span class="status-dot"></span>
-                        OPEN
-                    </div>
-
-                    <h3>
-                        How can I learn consistently?
-                    </h3>
-
-                    <p>
-                        Looking for a practical routine
-                        that actually works for a student.
-                    </p>
-
-                    <div class="card-footer">
-
-                        <span>
-                            💡 8 solutions
-                        </span>
-
-                        <span>
-                            Community
-                        </span>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- =========================
-             STATS
-        ========================== -->
-
-        <section class="stats-section">
-
-            <div class="stats-container">
-
-                <div class="stat">
-                    <strong>3</strong>
-                    <span>Problems Registered</span>
-                </div>
-
-                <div class="stat">
-                    <strong>1</strong>
-                    <span>Problems Solved</span>
-                </div>
-
-                <div class="stat">
-                    <strong>15</strong>
-                    <span>Solutions Shared</span>
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- =========================
-             RECENT PROBLEMS
-        ========================== -->
-
-        <section class="section problems-section">
-
-            <div class="section-heading">
-
-                <div>
-                    <p class="eyebrow">
-                        LATEST
-                    </p>
-
-                    <h2>
-                        Recently registered problems
-                    </h2>
-                </div>
-
-                <a
-                    href="problems.html"
-                    class="view-all"
-                >
-                    View all problems →
-                </a>
-
-            </div>
-
-
-            <!-- JavaScript will load problems here -->
-
-            <div
-                id="homeProblems"
-                class="problem-grid"
-            >
-            </div>
-
-        </section>
-
-    </main>
-
-
-    <!-- =========================
-         FOOTER
-    ========================== -->
-
-    <footer class="site-footer">
-
-        <div class="footer-container">
-
-
-            <!-- BRAND -->
-
-            <div class="footer-brand">
-
-                <a
-                    href="index.html"
-                    class="footer-logo"
-                >
-
-                    <img
-                        src="images/logo.png.jpeg"
-                        alt="SamadhanHub Logo"
-                    >
-
-                    <span>
-                        SamadhanHub
-                    </span>
-
-                </a>
-
-
-                <p>
-                    Connecting people with problems
-                    to people who can help solve them.
-                </p>
-
-            </div>
-
-
-            <!-- QUICK LINKS -->
-
-            <div class="footer-box">
-
-                <h3>
-                    Quick Links
-                </h3>
-
-                <a href="index.html">
-                    Home
-                </a>
-
-                <a href="problems.html">
-                    Browse Problems
-                </a>
-
-                <a href="register-problem.html">
-                    Register Problem
-                </a>
-
-                <a href="about.html">
-                    How It Works
-                </a>
-
-                <a href="profile.html">
-                    Profile
-                </a>
-
-            </div>
-
-
-            <!-- SOCIAL MEDIA -->
-
-            <div class="footer-box">
-
-                <h3>
-                    Follow Us
-                </h3>
-
-                <a
-                    href="#"
-                    target="_blank"
-                    rel="noopener"
-                >
-                    Instagram
-                </a>
-
-                <a
-                    href="#"
-                    target="_blank"
-                    rel="noopener"
-                >
-                    YouTube
-                </a>
-
-                <a
-                    href="#"
-                    target="_blank"
-                    rel="noopener"
-                >
-                    Facebook
-                </a>
-
-                <a
-                    href="#"
-                    target="_blank"
-                    rel="noopener"
-                >
-                    X / Twitter
-                </a>
-
-                <a
-                    href="#"
-                    target="_blank"
-                    rel="noopener"
-                >
-                    LinkedIn
-                </a>
-
-            </div>
-
-
-            <!-- CONTACT -->
-
-            <div class="footer-box">
-
-                <h3>
-                    Contact Us
-                </h3>
-
-                <a href="mailto:contact@samadhanhub.com">
-                    ✉ contact@samadhanhub.com
-                </a>
-
-                <a href="tel:+917091299919">
-                    ☎ +91 7091299919
-                </a>
-
-                <p>
-                    📍 India
-                </p>
-
-            </div>
-
-        </div>
-
-
-        <!-- FOOTER BOTTOM -->
-
-        <div class="footer-bottom">
-
-            <p>
-                © 2026 SamadhanHub.
-                All rights reserved.
-            </p>
-
+      </div>
+      <div class="device" aria-hidden="true">
+        <div class="device-float">💡 New solution posted</div>
+        <div class="device-screen">
+          <div class="device-bar"><i></i><i></i><i></i><b>SAMADHANHUB</b></div>
+          <div class="device-body">
             <div>
-
-                <a href="#">
-                    Privacy Policy
-                </a>
-
-                <a href="#">
-                    Terms & Conditions
-                </a>
-
-                <a href="#">
-                    Contact
-                </a>
-
+              <h4>Solve<br>Together</h4>
+              <p>Real people. Real answers.</p>
+              <span class="device-pill">Register Problem</span>
+              <div class="device-icons"><span>💬</span><span>✔</span><span>🔒</span></div>
             </div>
-
+            <div class="device-chart">
+              <small>Problems solved</small><strong>+68%</strong>
+              <div class="bars"><span></span><span></span><span></span><span></span><span></span></div>
+            </div>
+          </div>
         </div>
+        <div class="device-base"></div>
+      </div>
+    </div>
+  </section>
 
-    </footer>
+  <div class="ticker" id="ticker" aria-label="Recent activity"></div>
 
+  <div class="trust">
+    <span>Popular categories:</span>
+    <a class="chip" href="problems.html?category=Education">Education</a>
+    <a class="chip" href="problems.html?category=Technology">Technology</a>
+    <a class="chip" href="problems.html?category=Career">Career</a>
+    <a class="chip" href="problems.html?category=Business">Business</a>
+    <a class="chip" href="problems.html?category=Daily%20Life">Daily Life</a>
+    <a class="chip" href="problems.html?category=Community">Community</a>
+  </div>
 
-    <!-- JAVASCRIPT -->
+  <section class="features">
+    <a class="feature" href="register-problem.html"><div class="ico">📝</div><h3>Register Problem</h3><p>Describe it in under a minute.</p><div class="dots">•••</div></a>
+    <a class="feature hot" href="problems.html"><div class="ico">💡</div><h3>Community Solutions</h3><p>Real people share what worked.</p><div class="dots">•••</div></a>
+    <a class="feature" href="profile.html"><div class="ico">📈</div><h3>Track Progress</h3><p>Open → In Progress → Solved.</p><div class="dots">•••</div></a>
+    <a class="feature" href="about.html"><div class="ico">🔒</div><h3>Secure Accounts</h3><p>Hashed passwords, safe sessions.</p><div class="dots">•••</div></a>
+  </section>
 
-    <script src="js/app.js"></script>
+  <section class="stats-section">
+    <div class="stats-bar">
+      <div class="stats-container" id="homeStats">
+        <div class="stat"><strong>—</strong><span>Problems Registered</span></div>
+        <div class="stat"><strong>—</strong><span>Problems Solved</span></div>
+        <div class="stat"><strong>—</strong><span>Solutions Shared</span></div>
+      </div>
+      <a href="register-problem.html" class="btn btn-primary">Get Help Now →</a>
+    </div>
+  </section>
 
+  <section class="section problems-section">
+    <div class="section-heading">
+      <div><p class="eyebrow">Latest</p><h2>Recently registered problems</h2></div>
+      <a href="problems.html" class="view-all">View all problems →</a>
+    </div>
+    <div id="homeProblems" class="problem-grid"><p class="muted">Loading…</p></div>
+  </section>
+
+  <section class="section reveal">
+    <div class="section-heading">
+      <div><p class="eyebrow">Explore</p><h2>Browse by category</h2></div>
+      <a href="problems.html" class="view-all">All categories →</a>
+    </div>
+    <div id="categoryGrid" class="cat-grid"></div>
+  </section>
+
+  <section class="section reveal">
+    <div class="section-heading">
+      <div><p class="eyebrow">How it works</p><h2>From stuck to solved in three steps</h2></div>
+      <a href="about.html" class="view-all">Learn more →</a>
+    </div>
+    <div id="stepsGrid" class="steps"></div>
+  </section>
+
+  <section class="section reveal">
+    <div class="section-heading"><div><p class="eyebrow">Voices</p><h2>What the community says</h2></div></div>
+    <div id="testimonials" class="testimonials"></div>
+  </section>
+
+  <section class="section reveal">
+    <div class="section-heading"><div><p class="eyebrow">FAQ</p><h2>Quick answers</h2></div></div>
+    <div id="faqList" class="faq"></div>
+  </section>
+
+  <section class="cta-banner reveal">
+    <div>
+      <h2>Stuck on something? Someone has been there.</h2>
+      <p>Post your problem now and let the community help you solve it.</p>
+    </div>
+    <a href="register-problem.html" class="btn btn-primary">Register a Problem →</a>
+  </section>
+
+  <p class="tagline-strip">Simple<em>•</em>Fast<em>•</em>Secure<em>•</em>Community-driven</p>
+</main>
+<footer class="site-footer">
+  <div class="footer-container">
+    <div class="footer-brand">
+      <a href="index.html" class="footer-logo"><img src="images/logo.jpeg" alt="SamadhanHub logo"><span>SamadhanHub</span></a>
+      <p class="footer-tagline">Har Problem Ka Ek Samadhan</p>
+      <p>Connecting people with problems to people who can help solve them.</p>
+    </div>
+    <div class="footer-box">
+      <h3>Quick Links</h3>
+      <a href="index.html">Home</a>
+      <a href="problems.html">Browse Problems</a>
+      <a href="register-problem.html">Register Problem</a>
+      <a href="about.html">How It Works</a>
+      <a href="profile.html">Profile</a>
+    </div>
+    <div class="footer-box">
+      <h3>Follow Us</h3>
+      <a href="#" target="_blank" rel="noopener">Instagram</a>
+      <a href="#" target="_blank" rel="noopener">YouTube</a>
+      <a href="#" target="_blank" rel="noopener">X / Twitter</a>
+      <a href="#" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
+    <div class="footer-box">
+      <h3>Contact Us</h3>
+      <a href="mailto:contact@samadhanhub.com"><svg class="icon" viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-width="1.8"><rect x="3" y="5" width="18" height="14" rx="2"/><polyline points="3 7 12 13 21 7"/></svg> contact@samadhanhub.com</a>
+      <a href="tel:+917091299919"><svg class="icon" viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-width="1.8"><path d="M5 4h3l2 5-2.5 1.5a11 11 0 0 0 5 5L14 13l5 2v3a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg> +91 70912 99919</a>
+      <a href="contact.html"><svg class="icon" viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-width="1.8"><line x1="4" y1="12" x2="20" y2="12"/><polyline points="13 5 20 12 13 19"/></svg> Contact page</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 SamadhanHub. All rights reserved.</p>
+    <div><a href="about.html">Privacy Policy</a><a href="about.html">Terms</a><a href="contact.html">Contact</a></div>
+  </div>
+</footer>
+<script src="js/icons.js"></script>
+<script src="js/app.js"></script>
+<script src="js/index.js"></script>
+<script src="js/site.js"></script>
+<script src="js/chat.js"></script>
 </body>
 </html>
