@@ -1,13 +1,146 @@
-const demoProblems=[
-{id:"PS-1001",title:"How can I build a consistent programming routine?",description:"I am learning programming but struggle to stay consistent. I want a realistic routine for a student.",category:"Education",urgency:"Normal",location:"India",status:"OPEN",solutions:3,author:"Demo User",createdAt:"2026-09-23T10:00:00Z"},
-{id:"PS-1002",title:"Laptop becomes slow after installing development tools",description:"My laptop gets very slow after opening VS Code and browser together. Looking for optimization ideas.",category:"Technology",urgency:"Important",location:"India",status:"IN PROGRESS",solutions:5,author:"Rahul",createdAt:"2026-09-22T08:00:00Z"},
-{id:"PS-1003",title:"Need a practical roadmap for getting my first internship",description:"What should a beginner learn and build to become internship-ready?",category:"Career",urgency:"Normal",location:"India",status:"SOLVED",solutions:7,author:"Ankit",createdAt:"2026-09-20T12:00:00Z"}
-];
-function getProblems(){return JSON.parse(localStorage.getItem("ps_problems")||"null")||demoProblems}
-function saveProblems(p){localStorage.setItem("ps_problems",JSON.stringify(p))}
-function esc(s){return String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[c]))}
-function card(p){const cls=p.status==="SOLVED"?"solved":p.status==="IN PROGRESS"?"progress":"open";return `<article class="problem-card"><span class="status ${cls}">${esc(p.status)}</span><h3>${esc(p.title)}</h3><p>${esc(p.description).slice(0,120)}${p.description.length>120?"…":""}</p><div class="problem-meta"><span>📁 ${esc(p.category)}</span><span>💡 ${p.solutions||0} solutions</span><span>🆔 ${esc(p.id)}</span></div><br><a class="text-link" href="problem-details.html?id=${encodeURIComponent(p.id)}">View problem →</a></article>`}
-function currentUser(){return JSON.parse(localStorage.getItem("ps_user")||"null")}
-function updateNav(){const u=currentUser();document.querySelectorAll("#navAuth").forEach(a=>{if(u){a.textContent="Profile";a.href="profile.html"}})}
-function updateStats(){const p=getProblems();const solved=p.filter(x=>x.status==="SOLVED").length;const solutions=p.reduce((n,x)=>n+(x.solutions||0),0);const ids=new Set(p.map(x=>x.author));const map={problemCount:p.length,solvedCount:solved,solutionCount:solutions,helperCount:Math.max(ids.size,1)};Object.entries(map).forEach(([id,v])=>{const el=document.getElementById(id);if(el)el.textContent=v})}
-document.addEventListener("DOMContentLoaded",()=>{updateNav();updateStats();const h=document.getElementById("homeProblems");if(h)h.innerHTML=getProblems().slice(0,3).map(card).join("")})
+// =====================================================
+// SamadhanHub — shared front-end logic (loaded on every page)
+// =====================================================
+
+const API_BASE = '/api';
+const TOKEN_KEY = 'sh_token';
+const USER_KEY = 'sh_user';
+
+const Auth = {
+  getToken(){ return localStorage.getItem(TOKEN_KEY); },
+  getUser(){ try{ return JSON.parse(localStorage.getItem(USER_KEY)); }catch(e){ return null; } },
+  setSession(token, user){
+    localStorage.setItem(TOKEN_KEY, token);
+    localStorage.setItem(USER_KEY, JSON.stringify(user));
+  },
+  clear(){ localStorage.removeItem(TOKEN_KEY); localStorage.removeItem(USER_KEY); },
+  isLoggedIn(){ return !!this.getToken(); }
+};
+
+async function apiFetch(path, options = {}){
+  const headers = Object.assign({ 'Content-Type': 'application/json' }, options.headers || {});
+  const token = Auth.getToken();
+  if (token) headers['Authorization'] = `Bearer ${token}`;
+
+  let res;
+  try{
+    res = await fetch(API_BASE + path, { ...options, headers });
+  }catch(err){
+    throw new Error('Cannot reach the server. Is the SamadhanHub backend running?');
+  }
+
+  let data = null;
+  try{ data = await res.json(); }catch(e){ /* no body */ }
+
+  if (res.status === 401 && Auth.isLoggedIn()){
+    // token expired/invalid — drop the stale session
+    Auth.clear();
+  }
+  if (!res.ok){
+    throw new Error((data && data.error) || `Request failed (${res.status})`);
+  }
+  return data;
+}
+
+function showToast(message, type = 'success'){
+  document.querySelectorAll('.toast').forEach(t => t.remove());
+  const el = document.createElement('div');
+  el.className = `toast ${type === 'error' ? 'error' : ''}`;
+  el.innerHTML = `${type === 'error' ? Icon.x : Icon.check} <span>${escapeHtml(message)}</span>`;
+  document.body.appendChild(el);
+  setTimeout(() => el.remove(), 3200);
+}
+
+function escapeHtml(str){
+  const div = document.createElement('div');
+  div.textContent = str == null ? '' : String(str);
+  return div.innerHTML;
+}
+
+function timeAgo(iso){
+  const diff = (Date.now() - new Date(iso).getTime()) / 1000;
+  const units = [[31536000,'y'],[2592000,'mo'],[86400,'d'],[3600,'h'],[60,'m']];
+  for (const [secs, label] of units){
+    if (diff >= secs) return `${Math.floor(diff/secs)}${label} ago`;
+  }
+  return 'just now';
+}
+
+function statusClass(status){
+  return 'status-' + String(status || 'open').toLowerCase().replace(/\s+/g,'-');
+}
+function statusLabel(status){
+  const s = (status || 'OPEN').toUpperCase();
+  return s === 'IN PROGRESS' ? 'In Progress' : s.charAt(0) + s.slice(1).toLowerCase();
+}
+
+// ---- shared "problem card" renderer, used on index.html and problems.html ----
+function problemCardHTML(p){
+  const urgent = p.urgency === 'Urgent';
+  return `
+  <a class="problem-card ${statusClass(p.status)}" href="problem-details.html?id=${p.id}">
+    <div class="status ${p.status === 'SOLVED' ? 'solved' : p.status === 'IN PROGRESS' ? 'in-progress' : ''}">
+      <span class="status-dot"></span> ${statusLabel(p.status).toUpperCase()}
+    </div>
+    <h3>${escapeHtml(p.title)}</h3>
+    <p>${escapeHtml((p.description || '').slice(0, 110))}${(p.description||'').length > 110 ? '…' : ''}</p>
+    <div class="tag-row">
+      <span class="tag">${escapeHtml(p.category)}</span>
+      ${urgent ? `<span class="tag urgent">${Icon.flag} Urgent</span>` : ''}
+      ${p.location ? `<span class="tag">${Icon.pin} ${escapeHtml(p.location)}</span>` : ''}
+    </div>
+    <div class="card-footer">
+      <span>${Icon.lightbulb} ${p.solution_count ?? 0} solution${(p.solution_count ?? 0) === 1 ? '' : 's'}</span>
+      <span>${Icon.clock} ${timeAgo(p.created_at)}</span>
+    </div>
+  </a>`;
+}
+
+// ---- nav: auth-aware links + mobile toggle, runs on every page ----
+function initNav(){
+  const nav = document.querySelector('.nav-links');
+  if (!nav) return;
+
+  const authSlot = document.getElementById('navAuth');
+  if (authSlot){
+    if (Auth.isLoggedIn()){
+      const user = Auth.getUser();
+      const wrap = document.createElement('span');
+      wrap.style.display = 'contents';
+      wrap.innerHTML = `
+        <a href="profile.html" class="nav-user">${Icon.user} ${escapeHtml(user?.name?.split(' ')[0] || 'Profile')}</a>
+        <button class="link-btn" id="logoutBtn" type="button">${Icon.logout} Logout</button>`;
+      authSlot.replaceWith(wrap);
+      document.getElementById('logoutBtn').addEventListener('click', () => {
+        Auth.clear();
+        showToast('Logged out');
+        setTimeout(() => location.href = 'index.html', 500);
+      });
+    } else {
+      authSlot.textContent = 'Login';
+    }
+  }
+
+  let toggle = document.querySelector('.nav-toggle');
+  if (!toggle){
+    toggle = document.createElement('button');
+    toggle.className = 'nav-toggle';
+    toggle.type = 'button';
+    toggle.setAttribute('aria-label', 'Toggle menu');
+    toggle.innerHTML = Icon.menu;
+    nav.parentElement.insertBefore(toggle, nav);
+  }
+  toggle.addEventListener('click', () => nav.classList.toggle('open'));
+}
+
+// ---- gate pages that require login ----
+function requireAuth(){
+  if (!Auth.isLoggedIn()){
+    sessionStorage.setItem('sh_redirect', location.pathname + location.search);
+    location.href = 'login.html';
+    return false;
+  }
+  return true;
+}
+
+document.addEventListener('DOMContentLoaded', initNav);
