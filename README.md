@@ -296,7 +296,7 @@ When reporting a bug, include:
 **SamadhanHub**
 
 📧 Email: [contact@samadhanhub.com](mailto:contact@samadhanhub.com)
-📞 Phone: +91 7091299919
+📞 Phone: +91 7091298769
 📍 India
 
 These contact details are currently included in the website footer.
