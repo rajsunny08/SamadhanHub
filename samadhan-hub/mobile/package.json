@@ -2,8 +2,12 @@
   "name": "samadhanhub-app",
   "version": "1.0.0",
   "private": true,
+  "homepage": "https://rsunny08.github.io/samadhanhub",
   "description": "SamadhanHub native app shell (Capacitor) for the App Store and Play Store.",
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
+    
     "sync-web": "node sync-web.js",
     "sync": "npm run sync-web && npx cap sync",
     "open:android": "npx cap open android",
