@@ -1,0 +1,97 @@
+/* =====================================================
+   SAMADHANHUB RESPONSIVE OVERRIDES
+===================================================== */
+
+/* TABLET */
+@media (max-width: 950px) {
+
+    .nav-links { gap: 16px; }
+    .nav-links a { font-size: 13px; }
+
+    .hero-container { grid-template-columns: 1fr; gap: 45px; }
+    .hero-card { max-width: 600px; width: 100%; margin: 0 auto; transform: none; }
+
+    .problem-grid { grid-template-columns: repeat(2, 1fr); }
+
+    .footer-container { grid-template-columns: repeat(2, 1fr); gap: 40px; }
+
+    .steps { grid-template-columns: repeat(2, 1fr); }
+    .two-col { grid-template-columns: 1fr; }
+}
+
+
+/* MOBILE */
+@media (max-width: 700px) {
+
+    .nav-container {
+        width: calc(100% - 30px);
+        min-height: 70px;
+        gap: 12px;
+        padding: 12px 0;
+    }
+
+    .nav-links {
+        position: absolute; top: 100%; left: 0; right: 0;
+        background: #0a1226; border-bottom: 1px solid var(--border);
+        flex-direction: column; align-items: flex-start;
+        padding: 16px calc((100% - min(var(--max-width), calc(100% - 30px))) / 2 + 15px);
+        gap: 6px; display: none; box-shadow: 0 20px 50px rgba(0,0,0,.5);
+    }
+    .nav-links.open { display: flex; }
+    .nav-links a { padding: 10px 0; width: 100%; }
+    .nav-links .nav-button { width: 100%; justify-content: center; margin: 6px 0; }
+    .nav-links .account-menu { align-self: stretch; margin-top: 4px; }
+    .nav-links .account-drop { left: 0; right: auto; }
+    .nav-toggle { display: flex; }
+
+    .hero { padding: 55px 0; }
+    .hero-container { width: calc(100% - 30px); }
+    .hero h1 { font-size: 43px; letter-spacing: -1.5px; }
+    .hero-description { font-size: 15px; }
+
+    .stats-container { width: 100%; }
+    .stat { padding: 25px 8px; }
+    .stat strong { font-size: 25px; }
+    .stat span { font-size: 10px; }
+
+    .section { width: calc(100% - 30px); padding: 55px 0; }
+    .section-heading { align-items: flex-start; flex-direction: column; gap: 12px; }
+    .section-heading h2 { font-size: 27px; }
+
+    .problem-grid { grid-template-columns: 1fr; }
+
+    .footer-container { width: calc(100% - 30px); grid-template-columns: 1fr; gap: 35px; padding: 50px 0; }
+    .footer-bottom { width: calc(100% - 30px); align-items: flex-start; flex-direction: column; padding: 20px 0; gap: 15px; }
+    .footer-bottom div { gap: 14px; }
+
+    .filters { flex-direction: column; }
+    .filters .input, .input-icon-group { width: 100%; }
+
+    .steps { grid-template-columns: 1fr; }
+
+    .detail-header { flex-direction: column; }
+    .detail-title { font-size: 26px; }
+
+    .profile-header { flex-direction: column; text-align: center; }
+    .profile-stats { justify-content: center; }
+
+    .page { width: calc(100% - 30px); padding: 32px 0 60px; }
+}
+
+
+/* SMALL MOBILE */
+@media (max-width: 420px) {
+
+    .brand span { font-size: 18px !important; }
+    .brand img { width: 46px; height: 46px; }
+
+    .hero h1 { font-size: 37px; }
+    .hero-actions { flex-direction: column; align-items: stretch; }
+    .hero-actions .btn, .form-card .btn-large { width: 100%; }
+
+    .stats-container { grid-template-columns: 1fr; }
+    .stat { border-right: none; border-bottom: 1px solid var(--border); }
+    .stat:last-child { border-bottom: none; }
+
+    .toast { left: 16px; right: 16px; bottom: 16px; }
+}
