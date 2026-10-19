@@ -1,0 +1,22 @@
+{
+  "name": "samadhanhub-app",
+  "version": "1.0.0",
+  "private": true,
+  "description": "SamadhanHub native app shell (Capacitor) for the App Store and Play Store.",
+  "scripts": {
+    "sync-web": "node sync-web.js",
+    "sync": "npm run sync-web && npx cap sync",
+    "open:android": "npx cap open android",
+    "open:ios": "npx cap open ios",
+    "assets": "npx @capacitor/assets generate --iconBackgroundColor \"#0b1430\" --iconBackgroundColorDark \"#0b1430\" --splashBackgroundColor \"#050b1a\" --splashBackgroundColorDark \"#050b1a\""
+  },
+  "dependencies": {
+    "@capacitor/android": "^6.1.2",
+    "@capacitor/core": "^6.1.2",
+    "@capacitor/ios": "^6.1.2"
+  },
+  "devDependencies": {
+    "@capacitor/assets": "^3.0.5",
+    "@capacitor/cli": "^6.1.2"
+  }
+}

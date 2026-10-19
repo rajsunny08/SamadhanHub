@@ -1,0 +1,16 @@
+# dependencies
+server/node_modules/
+
+# environment / secrets
+server/.env
+
+# local database
+server/samadhanhub.db
+server/samadhanhub.db-wal
+server/samadhanhub.db-shm
+
+# OS / editor junk
+.DS_Store
+Thumbs.db
+.vscode/*
+!.vscode/extensions.json

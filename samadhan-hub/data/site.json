@@ -1,0 +1,266 @@
+{
+  "brand": {
+    "name": "SamadhanHub",
+    "tagline": "Har Problem Ka Ek Samadhan"
+  },
+  "rotator": [
+    "a study routine that actually sticks",
+    "slow database queries on a growing app",
+    "a local shop losing walk-in customers",
+    "a roadmap to land the first internship",
+    "flooded streets every monsoon"
+  ],
+  "ticker": [
+    "💡 Rahul suggested a composite index on a MySQL problem",
+    "✅ \"Local bakery footfall\" was marked Solved",
+    "📝 Priya registered a new Career problem",
+    "🤝 Ankit shared a 90-day DSA plan",
+    "🚀 3 new solutions posted in the last hour",
+    "🏡 A Daily Life problem just moved to In Progress"
+  ],
+  "categories": [
+    {
+      "name": "Education",
+      "icon": "📚",
+      "desc": "Study habits, exams, learning paths"
+    },
+    {
+      "name": "Technology",
+      "icon": "💻",
+      "desc": "Code, devices, databases, tools"
+    },
+    {
+      "name": "Career",
+      "icon": "🚀",
+      "desc": "Interviews, internships, growth"
+    },
+    {
+      "name": "Business",
+      "icon": "🏪",
+      "desc": "Startups, shops, marketing"
+    },
+    {
+      "name": "Daily Life",
+      "icon": "🏡",
+      "desc": "Home, routines, everyday fixes"
+    },
+    {
+      "name": "Community",
+      "icon": "🤝",
+      "desc": "Neighbourhood and civic issues"
+    }
+  ],
+  "steps": [
+    {
+      "icon": "📝",
+      "title": "Register your problem",
+      "text": "Describe what is happening, pick a category and urgency, and publish in under a minute."
+    },
+    {
+      "icon": "💬",
+      "title": "People weigh in",
+      "text": "Anyone in the community can read it and post a solution based on what worked for them."
+    },
+    {
+      "icon": "✅",
+      "title": "Track it to solved",
+      "text": "Move it from Open to In Progress to Solved so the next person finds the answer instantly."
+    }
+  ],
+  "testimonials": [
+    {
+      "name": "Ananya S.",
+      "role": "B.Tech student",
+      "text": "I posted my study-routine problem at night and had three practical answers by morning. The 25-minute rule actually worked.",
+      "rating": 5
+    },
+    {
+      "name": "Rahul V.",
+      "role": "Backend developer",
+      "text": "Clean, fast and focused. Marking a problem as Solved makes the whole thread useful for the next person.",
+      "rating": 5
+    },
+    {
+      "name": "Priya M.",
+      "role": "Small business owner",
+      "text": "Ideas from strangers helped me bring walk-in customers back. No noise, just solutions.",
+      "rating": 4
+    }
+  ],
+  "faqs": [
+    {
+      "q": "Is SamadhanHub free to use?",
+      "a": "Yes. Creating an account, registering problems and posting solutions are all free."
+    },
+    {
+      "q": "Who can post a solution?",
+      "a": "Any logged-in member. The person who registered the problem controls its status (Open, In Progress, Solved)."
+    },
+    {
+      "q": "Can I delete my problem?",
+      "a": "Yes. From your profile or the problem page you can delete problems you created."
+    },
+    {
+      "q": "How is my password stored?",
+      "a": "Passwords are hashed with bcrypt and sessions use signed JWT tokens. Plain-text passwords are never stored."
+    },
+    {
+      "q": "What does Urgent mean?",
+      "a": "It is a flag you set so helpers know the problem is time-sensitive. It does not change ranking rules."
+    }
+  ],
+  "sample_problems": [
+    {
+      "id": 1,
+      "title": "How can I learn consistently?",
+      "description": "I keep starting new study routines and dropping them within a week. Looking for a practical system that survives busy weeks, not just motivation.",
+      "category": "Education",
+      "urgency": "Important",
+      "location": "Remote",
+      "status": "OPEN",
+      "author": "Demo User",
+      "created_at": "2026-09-27T09:10:00Z",
+      "solutions": [
+        {
+          "author": "Ananya Singh",
+          "content": "A fixed 25-minute block right after breakfast, before checking your phone. Consistency beats duration - 25 minutes daily compounds faster than a weekend binge.",
+          "created_at": "2026-09-27T12:00:00Z"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "title": "Slow MySQL queries on a growing orders table",
+      "description": "Our orders table crossed 2M rows and a few dashboard queries went from 200ms to 4s+. We already have indexes on user_id and created_at.",
+      "category": "Technology",
+      "urgency": "Urgent",
+      "location": "Greater Noida",
+      "status": "IN PROGRESS",
+      "author": "Demo User",
+      "created_at": "2026-09-26T15:30:00Z",
+      "solutions": [
+        {
+          "author": "Rahul Verma",
+          "content": "Try a composite index matching your WHERE + ORDER BY, e.g. (user_id, created_at). Then run EXPLAIN to confirm it is used instead of a filesort.",
+          "created_at": "2026-09-26T17:45:00Z"
+        },
+        {
+          "author": "Priya Sharma",
+          "content": "Also consider archiving old rows to a history table and paginating with a keyset (WHERE id < last_id) instead of OFFSET.",
+          "created_at": "2026-09-27T08:20:00Z"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "title": "Local bakery losing walk-in customers to delivery apps",
+      "description": "A family-run bakery near me is struggling since delivery platforms took over. Looking for low-cost ways to bring back foot traffic.",
+      "category": "Business",
+      "urgency": "Normal",
+      "location": "Mohali",
+      "status": "SOLVED",
+      "author": "Priya Sharma",
+      "created_at": "2026-09-22T11:00:00Z",
+      "solutions": [
+        {
+          "author": "Ankit Raj",
+          "content": "Fresh-bake time boards outside the shop, a loyalty stamp card and a Google Maps listing with real photos brought steady walk-ins for similar shops.",
+          "created_at": "2026-09-23T10:00:00Z"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "title": "Laptop becomes slow after installing development tools",
+      "description": "My laptop lags badly when VS Code, Docker and a browser are open together. Looking for optimization ideas on 8GB RAM.",
+      "category": "Technology",
+      "urgency": "Important",
+      "location": "Patna",
+      "status": "OPEN",
+      "author": "Rahul Verma",
+      "created_at": "2026-09-25T08:00:00Z",
+      "solutions": [
+        {
+          "author": "Demo User",
+          "content": "Limit Docker Desktop memory in settings, disable unused VS Code extensions, and keep browser tabs under control. An SSD upgrade helps the most.",
+          "created_at": "2026-09-25T13:00:00Z"
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "title": "Practical roadmap for landing my first internship",
+      "description": "What should a beginner learn and build to become internship-ready within 6 months?",
+      "category": "Career",
+      "urgency": "Normal",
+      "location": "India",
+      "status": "SOLVED",
+      "author": "Ankit Raj",
+      "created_at": "2026-09-20T12:00:00Z",
+      "solutions": [
+        {
+          "author": "Rahul Verma",
+          "content": "Months 1-2: one language + DSA basics. Months 3-4: two small full-stack projects with a database. Months 5-6: apply weekly, polish GitHub and resume.",
+          "created_at": "2026-09-20T18:00:00Z"
+        },
+        {
+          "author": "Ananya Singh",
+          "content": "Add a README with screenshots to every project. Recruiters skim - make your best work obvious in 10 seconds.",
+          "created_at": "2026-09-21T09:30:00Z"
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "title": "Our street floods every monsoon",
+      "description": "Water logging near the colony entrance blocks vehicles for days. How do residents effectively escalate this to the local authority?",
+      "category": "Community",
+      "urgency": "Urgent",
+      "location": "Purnia",
+      "status": "OPEN",
+      "author": "Ankit Raj",
+      "created_at": "2026-09-27T06:45:00Z",
+      "solutions": []
+    },
+    {
+      "id": 7,
+      "title": "Cannot focus while studying at home with a noisy family",
+      "description": "Home is busy in the evenings and I cannot concentrate. Looking for realistic ways to create a focus window.",
+      "category": "Daily Life",
+      "urgency": "Normal",
+      "location": "Bihar",
+      "status": "IN PROGRESS",
+      "author": "Ananya Singh",
+      "created_at": "2026-09-24T19:20:00Z",
+      "solutions": [
+        {
+          "author": "Priya Sharma",
+          "content": "Shift your deep-work block to early morning, use noise-cancelling earbuds with brown noise, and tell family your fixed hours in advance.",
+          "created_at": "2026-09-25T07:10:00Z"
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "title": "How to prepare DSA in 90 days for placements",
+      "description": "I know basic Java. Need a week-by-week plan covering arrays, trees, graphs and DP with revision built in.",
+      "category": "Career",
+      "urgency": "Important",
+      "location": "Greater Noida",
+      "status": "OPEN",
+      "author": "Demo User",
+      "created_at": "2026-09-28T05:30:00Z",
+      "solutions": []
+    }
+  ],
+  "assistant": {
+    "name": "Sam",
+    "title": "Samadhan Assistant",
+    "suggestions": [
+      "How do I register a problem?",
+      "What does Urgent mean?",
+      "Help me build a study routine",
+      "Tell me something interesting"
+    ]
+  }
+}

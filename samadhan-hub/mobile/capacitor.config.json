@@ -1,0 +1,25 @@
+{
+  "appId": "com.samadhanhub.app",
+  "appName": "SamadhanHub",
+  "webDir": "www",
+  "backgroundColor": "#050b1a",
+  "android": {
+    "backgroundColor": "#050b1a"
+  },
+  "ios": {
+    "backgroundColor": "#050b1a",
+    "contentInset": "always"
+  },
+  "plugins": {
+    "SplashScreen": {
+      "launchShowDuration": 800,
+      "backgroundColor": "#050b1a",
+      "showSpinner": false,
+      "androidSplashResourceName": "splash"
+    },
+    "StatusBar": {
+      "style": "DARK",
+      "backgroundColor": "#0b1430"
+    }
+  }
+}
